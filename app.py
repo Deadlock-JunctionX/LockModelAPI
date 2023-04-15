@@ -28,7 +28,7 @@ def detect_intent(ms: str):
         amount=amount,
         intent="LEDING"
     )
-    return JSONResponse(content=result,  media_type="application/json")
+    return JSONResponse(content=result.__dict__,  media_type="application/json")
 
 
 
@@ -46,5 +46,6 @@ def norm_curency(raw_curency: str):
     raw_curency = re.sub(r"triệu","000000", raw_curency)
 
     raw_curency = re.sub(r"tỉ","000000000", raw_curency)
-
-    return raw_curency
+    raw_curency = re.sub(r"[^0-9]","", raw_curency)
+    
+    return int(raw_curency)

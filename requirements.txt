@@ -1,2 +1,7 @@
+transformers
+optimum[onnxruntime]
+datasets
+torch
+sklearn
 uvicorn==0.21.1
 fastapi

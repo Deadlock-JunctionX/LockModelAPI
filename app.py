@@ -4,6 +4,7 @@ from typing import List
 
 import torch
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
@@ -12,6 +13,14 @@ from handler import IntentionDetector
 app = FastAPI()
 intent_detector = IntentionDetector()
 pattern = r"\d+\s*[k]*['nghìn']*['ngàn']*['cành']*['triệu']*['trịu']*[tỉ]*[củ]*[trăm]*"
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class Result(BaseModel):

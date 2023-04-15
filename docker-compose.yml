@@ -4,11 +4,10 @@ services:
   app:
     image: lock/model-api
     build: .
-    ports:
-      - 8000:8000
     volumes:
       - ./:/app
     environment:
       DEBUG: "true"
       LOG_LEVEL: "DEBUG"
     command: uvicorn app:app --host 0.0.0.0 --port 8000 --reload 
+    network_mode: "host"
